@@ -7,6 +7,12 @@ let nextServer = null;
 let mainWindow = null;
 
 function getNodePath() {
+  // Windows에서는 그냥 'node'만 써도 PATH에서 찾음
+  if (process.platform === 'win32') {
+    return 'node';
+  }
+  
+  // Mac/Linux
   try {
     return execSync('which node', { encoding: 'utf8' }).trim();
   } catch {
